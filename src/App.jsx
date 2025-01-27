@@ -15,13 +15,21 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
+
           <Route
             path="/register"
-            element={<RestrictedRoute component={RegistrationPage} />}
+            element={
+              <RestrictedRoute
+                component={RegistrationPage}
+                redirectTo="/contacts"
+              />
+            }
           />
           <Route
             path="/login"
-            element={<RestrictedRoute component={LoginPage} />}
+            element={
+              <RestrictedRoute component={LoginPage} redirectTo="/contacts" />
+            }
           />
           <Route
             path="/contacts"
