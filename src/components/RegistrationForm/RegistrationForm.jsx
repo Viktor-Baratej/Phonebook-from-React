@@ -5,25 +5,30 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import s from "./RegistrationForm.module.css";
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(3, "Name must be at least 3 characters")
-    .required("Name is required"),
-  email: Yup.string()
-    .email("Invalid email format")
-    .required("Email is required"),
-  password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
-    .required("Password is required"),
-});
-
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
-  const handleSubmit = (values, { resetForm }) => {
-    dispatch(register(values));
-    resetForm();
+  const handleSubmit = (values) => {
+    const userData = {
+      name: values.name,
+      email: values.email,
+      password: values.password,
+    };
+
+    dispatch(register(userData));
   };
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .min(2, "Name must be at least 2 characters")
+      .required("Name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
+  });
 
   return (
     <Formik
