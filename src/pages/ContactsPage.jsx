@@ -14,10 +14,8 @@ const ContactsPage = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    if (contacts.length === 0) {
-      dispatch(fetchContacts());
-    }
-  }, [dispatch, contacts.length]);
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   if (isLoading) {
     return (
