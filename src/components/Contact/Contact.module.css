@@ -1,0 +1,28 @@
+.contact_item {
+  font-size: 15px;
+  padding: 5px 15px;
+}
+
+.item_wrapper {
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 20px;
+}
+
+.contact_info {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(77, 44, 3);
+}
+
+.contact_btn {
+  background-color: rgb(106, 130, 55);
+  border: none;
+  padding: 5px;
+  border-radius: 20px;
+  color: black;
+  &&:hover {
+    background-color: aquamarine;
+  }
+  margin-bottom: 8px;
+}

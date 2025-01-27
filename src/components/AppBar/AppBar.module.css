@@ -1,0 +1,35 @@
+.header {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px 15px;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5);
+  margin-bottom: 100px;
+}
+
+.header_nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header_home {
+  margin-right: 175px;
+}
+
+.header_home,
+.header_link {
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(77, 44, 3);
+  &&:hover {
+    color: rgb(81, 163, 136);
+    transition: transform 0.4s ease;
+    transform: scale(1) translateY(-10px);
+  }
+}
+
+.header_link_content {
+  display: flex;
+  gap: 20px;
+}

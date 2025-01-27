@@ -1,0 +1,37 @@
+.contact_wraper {
+  display: flex;
+  justify-content: center;
+}
+
+.contact_list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.contact_item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border: 2px solid black;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.contact_btn {
+  margin-left: 20px;
+  background-color: rgb(106, 130, 55);
+  border: none;
+  padding: 10px;
+  border-radius: 20px;
+  color: black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  &&:hover {
+    background-color: aquamarine;
+  }
+}

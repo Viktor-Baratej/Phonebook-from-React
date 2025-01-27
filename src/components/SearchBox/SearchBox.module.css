@@ -1,0 +1,10 @@
+.input_body {
+  background-color: rgb(175, 148, 106);
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  color: black;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
