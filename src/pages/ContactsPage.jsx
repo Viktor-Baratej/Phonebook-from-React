@@ -14,27 +14,43 @@ const ContactsPage = () => {
   const error = useSelector(selectError);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (contacts.length === 0) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, contacts.length]);
 
   if (isLoading) {
-    return <p>Loading contacts...</p>;
+    return (
+      <div>
+        <h1>Contacts</h1>
+        <p>Loading contacts...</p>
+      </div>
+    );
   }
 
   if (error) {
-    return <p>Error: {error}</p>;
+    return (
+      <div>
+        <h1>Contacts</h1>
+        <p>Error fetching contacts: {error}</p>
+      </div>
+    );
   }
 
   return (
     <div>
       <h1>Contacts</h1>
-      <ul>
-        {contacts.map((contact) => (
-          <li key={contact.id}>
-            {contact.name}: {contact.number}
-          </li>
-        ))}
-      </ul>
+      {contacts.length > 0 ? (
+        <ul>
+          {contacts.map((contact) => (
+            <li key={contact.id}>
+              {contact.name}: {contact.number}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No contacts available.</p>
+      )}
     </div>
   );
 };
