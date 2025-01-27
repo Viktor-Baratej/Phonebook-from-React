@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import Layout from "./components/Layout/Layout";
