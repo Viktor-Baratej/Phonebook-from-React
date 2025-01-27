@@ -1,12 +1,9 @@
-import "./index.css";
-import ContactsForm from "./components/ContactsForm/ContactsForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 import { fetchContacts } from "./redux/contacts/operations";
-
-import { Route, Routes } from "react-router-dom";
+import { selectIsLoggedIn } from "./redux/auth/selectors";
 import Layout from "./components/Layout/Layout";
 import HomePage from "./pages/HomePage";
 import RegistrationPage from "./pages/RegistrationPage";
@@ -14,14 +11,16 @@ import LoginPage from "./pages/LoginPage";
 import ContactsPage from "./pages/ContactsPage";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import RestrictedRoute from "./components/RestrictedRoute/RestrictedRoute";
-import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+    if (isLoggedIn) {
+      dispatch(fetchContacts());
+    }
+  }, [dispatch, isLoggedIn]);
 
   return (
     <>

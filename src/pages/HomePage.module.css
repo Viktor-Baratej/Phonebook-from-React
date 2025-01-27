@@ -1,4 +1,6 @@
 .home_title {
+  max-width: 500px;
+  width: 100%;
   border: none;
   border-radius: 10px;
   padding: 10px 15px;

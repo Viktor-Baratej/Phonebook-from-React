@@ -1,67 +1,89 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// Встановлення базового URL для Axios
 axios.defaults.baseURL = "https://connections-api.goit.global";
 
-// Операція для реєстрації нового користувача
+// Реєстрація користувача
 export const register = createAsyncThunk(
   "auth/register",
-  async (credentials, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      const { data } = await axios.post("/users/signup", credentials);
-      // Збереження токену
-      axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      return data;
+      console.log("Sending registration data:", userData);
+      const response = await axios.post("/users/signup", userData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Error during registration:", error.response);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
-// Операція для входу
+// Логін
 export const logIn = createAsyncThunk(
   "auth/login",
   async (credentials, thunkAPI) => {
     try {
-      const { data } = await axios.post("/users/login", credentials);
-      // Збереження токену
-      axios.defaults.headers.common.Authorization = `Bearer ${data.token}`;
-      return data;
+      const response = await axios.post("/users/login", credentials, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Error during login:", error.response);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );
 
-// Операція для виходу
+// Логаут
 export const logOut = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
   try {
-    await axios.post("/users/logout");
-    // Видалення токену
-    delete axios.defaults.headers.common.Authorization;
+    await axios.post(
+      "/users/logout",
+      {},
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return null;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    console.error("Error during logout:", error.response);
+    return thunkAPI.rejectWithValue(error.response?.data || error.message);
   }
 });
 
-// Операція для оновлення користувача
+// Оновлення даних користувача
 export const refreshUser = createAsyncThunk(
   "auth/refresh",
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue("No token found");
-    }
-
     try {
-      axios.defaults.headers.common.Authorization = `Bearer ${persistedToken}`;
-      const { data } = await axios.get("/users/current");
-      return data;
+      const state = thunkAPI.getState();
+      const token = state.auth.token;
+
+      if (!token) {
+        console.warn("No token available");
+        return thunkAPI.rejectWithValue("No token available");
+      }
+
+      axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+      const response = await axios.get("/users/current", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      console.error("Error during refreshing user:", error.response);
+      return thunkAPI.rejectWithValue(error.response?.data || error.message);
     }
   }
 );

@@ -1,45 +1,58 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { register } from "../../redux/auth/operations";
 import s from "./RegistrationForm.module.css";
 
-const RegistrationSchema = Yup.object().shape({
-  name: Yup.string().min(2, "Too Short!").required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
-  password: Yup.string().min(6, "Too Short!").required("Required"),
+const validationSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(3, "Name must be at least 3 characters")
+    .required("Name is required"),
+  email: Yup.string()
+    .email("Invalid email format")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
 });
 
-const RegistrationForm = ({ onSubmit }) => {
+const RegistrationForm = () => {
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, { resetForm }) => {
+    dispatch(register(values));
+    resetForm();
+  };
+
   return (
     <Formik
       initialValues={{ name: "", email: "", password: "" }}
-      validationSchema={RegistrationSchema}
-      onSubmit={(values, actions) => {
-        onSubmit(values);
-        actions.resetForm();
-      }}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
-        <Form>
-          <div className={s.register_container}>
-            <label>Name</label>
-            <Field name="name" />
-            {errors.name && touched.name ? <div>{errors.name}</div> : null}
-
-            <label>Email</label>
-            <Field name="email" type="email" />
-            {errors.email && touched.email ? <div>{errors.email}</div> : null}
-
-            <label>Password</label>
-            <Field name="password" type="password" />
-            {errors.password && touched.password ? (
+        <Form className={s.register_container}>
+          <label>
+            Name:
+            <Field type="text" name="name" />
+            {touched.name && errors.name && <div>{errors.name}</div>}
+          </label>
+          <label>
+            Email:
+            <Field type="email" name="email" />
+            {touched.email && errors.email && <div>{errors.email}</div>}
+          </label>
+          <label>
+            Password:
+            <Field type="password" name="password" />
+            {touched.password && errors.password && (
               <div>{errors.password}</div>
-            ) : null}
-
-            <button className={s.register_btn} type="submit">
-              Register
-            </button>
-          </div>
+            )}
+          </label>
+          <button className={s.register_btn} type="submit">
+            Register
+          </button>
         </Form>
       )}
     </Formik>

@@ -1,6 +1,9 @@
 .register_container {
   display: flex;
   flex-direction: column;
+  max-width: 500px;
+  width: 100%;
+  gap: 20px;
   border: 2px solid black;
   border-radius: 10px;
   padding: 10px 15px;
@@ -9,6 +12,16 @@
   font-size: 20px;
   font-weight: bold;
   color: rgb(77, 44, 3);
+}
+
+label {
+  min-width: 80px;
+  text-align: left;
+}
+
+input {
+  padding: 5px;
+  width: 200px;
 }
 
 .register_btn {
