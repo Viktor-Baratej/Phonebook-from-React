@@ -6,6 +6,7 @@ import {
   selectIsLoading,
   selectError,
 } from "../redux/contacts/selectors";
+import ContactsForm from "../components/ContactsForm/ContactsForm";
 
 const ContactsPage = () => {
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const ContactsPage = () => {
   return (
     <div>
       <h1>Contacts</h1>
+      <ContactsForm /> {/* Використання імпортованого компонента */}
       {contacts.length > 0 ? (
         <ul>
           {contacts.map((contact) => (
