@@ -2,7 +2,8 @@
   border: 1px solid;
   border-radius: 20px;
   background-color: rgb(240, 204, 160);
-  font-size: 18px;
+  font-size: 25px;
+  padding: 7px;
   font-weight: bold;
   margin-left: 40px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);

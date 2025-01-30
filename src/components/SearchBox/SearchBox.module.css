@@ -1,10 +1,19 @@
+.input_placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .input_body {
-  background-color: rgb(175, 148, 106);
-  font-size: 15px;
+  text-align: center;
+  background-color: rgb(186, 162, 123);
+  font-size: 20px;
   padding: 10px;
   border: none;
   border-radius: 20px;
-  color: black;
+  color: rgb(77, 44, 3);
+  font-weight: bold;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
+  margin-bottom: 30px;
 }

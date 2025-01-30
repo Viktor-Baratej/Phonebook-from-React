@@ -1,0 +1,11 @@
+.contacts_title {
+  text-align: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.contacts_text {
+  text-align: center;
+}

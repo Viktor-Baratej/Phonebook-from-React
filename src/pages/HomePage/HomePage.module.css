@@ -1,11 +1,10 @@
 .home_title {
-  max-width: 500px;
-  width: 100%;
   border: none;
   border-radius: 10px;
   padding: 10px 15px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   color: rgb(77, 44, 3);
+  text-align: center;
   /* text-shadow: 0 0 0 transparent;
   transition: transform 0.3s ease, text-shadow 0.3s ease, font-size 0.3s ease; */
 }

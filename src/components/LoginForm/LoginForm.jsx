@@ -36,21 +36,23 @@ const LoginForm = () => {
       onSubmit={handleSubmit}
     >
       {() => (
-        <Form className={s.login_container}>
-          <label>
-            Email:
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-          </label>
-          <label>
-            Password:
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-          </label>
-          <button className={s.login_btn} type="submit">
-            Log In
-          </button>
-        </Form>
+        <div className={s.login_container}>
+          <Form className={s.login_content}>
+            <label>
+              Email:
+              <Field type="email" name="email" />
+              <ErrorMessage name="email" component="div" />
+            </label>
+            <label>
+              Password:
+              <Field type="password" name="password" />
+              <ErrorMessage name="password" component="div" />
+            </label>
+            <button className={s.login_btn} type="submit">
+              Log In
+            </button>
+          </Form>
+        </div>
       )}
     </Formik>
   );

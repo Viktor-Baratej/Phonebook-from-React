@@ -1,8 +1,14 @@
 .login_container {
   display: flex;
+  justify-content: center;
+}
+
+.login_content {
+  display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
-  max-width: 500px;
+  max-width: 450px;
   width: 100%;
   border: 2px solid black;
   border-radius: 10px;

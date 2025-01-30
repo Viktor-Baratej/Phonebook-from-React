@@ -1,43 +1,31 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchContacts, deleteContact } from "../../redux/contacts/operations";
-import { selectFilteredContacts } from "../../redux/contacts/slice";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { selectFilteredContacts } from "../../redux/contacts/selectors";
 import s from "./ContactList.module.css";
-import toast from "react-hot-toast";
-
-const handleDeleteContact = async (id) => {
-  try {
-    await deleteContact(id);
-    toast.success("Contact deleted successfully!");
-  } catch (error) {
-    toast.error("Failed to delete contact!");
-  }
-};
+import { deleteContact } from "../../redux/contacts/operations";
 
 const ContactList = () => {
+  const filteredContacts = useSelector(selectFilteredContacts);
   const dispatch = useDispatch();
-  const contacts = useSelector(selectFilteredContacts);
-  const loading = useSelector((state) => state.contacts.loading);
-
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
-  const handleDelete = (id) => {
-    dispatch(deleteContact(id));
+  const handleDelete = (contactId) => {
+    if (!contactId) {
+      console.error("ID is undefined");
+      return;
+    }
+    dispatch(deleteContact(contactId));
   };
 
-  if (loading) {
-    return <p>Loading contacts...</p>;
-  }
-
   return (
-    <div className={s.contact_wraper}>
+    <div className={s.contact_content}>
       <ul className={s.contact_list}>
-        {contacts.map(({ id, name, phone }) => (
-          <li className={s.contact_item} key={id}>
-            {name}: {phone}
-            <button className={s.contact_btn} onClick={() => handleDelete(id)}>
+        {filteredContacts.map((contact) => (
+          <li className={s.contact_item} key={contact.id}>
+            {contact.name}: <br />
+            {contact.number}
+            <button
+              className={s.contact_btn}
+              onClick={() => handleDelete(contact.id)}
+            >
               Delete
             </button>
           </li>

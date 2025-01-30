@@ -37,28 +37,30 @@ const RegistrationForm = () => {
       onSubmit={handleSubmit}
     >
       {({ errors, touched }) => (
-        <Form className={s.register_container}>
-          <label>
-            Name:
-            <Field type="text" name="name" />
-            {touched.name && errors.name && <div>{errors.name}</div>}
-          </label>
-          <label>
-            Email:
-            <Field type="email" name="email" />
-            {touched.email && errors.email && <div>{errors.email}</div>}
-          </label>
-          <label>
-            Password:
-            <Field type="password" name="password" />
-            {touched.password && errors.password && (
-              <div>{errors.password}</div>
-            )}
-          </label>
-          <button className={s.register_btn} type="submit">
-            Register
-          </button>
-        </Form>
+        <div className={s.register_container}>
+          <Form className={s.register_content}>
+            <label>
+              Name:
+              <Field type="text" name="name" />
+              {touched.name && errors.name && <div>{errors.name}</div>}
+            </label>
+            <label>
+              Email:
+              <Field type="email" name="email" />
+              {touched.email && errors.email && <div>{errors.email}</div>}
+            </label>
+            <label>
+              Password:
+              <Field type="password" name="password" />
+              {touched.password && errors.password && (
+                <div>{errors.password}</div>
+              )}
+            </label>
+            <button className={s.register_btn} type="submit">
+              Register
+            </button>
+          </Form>
+        </div>
       )}
     </Formik>
   );

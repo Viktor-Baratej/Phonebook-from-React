@@ -1,35 +1,79 @@
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { addContact } from "../../redux/contacts/operations";
 import React from "react";
 import s from "./ContactsForm.module.css";
 
+// const ContactsForm = () => {
+//   const dispatch = useDispatch();
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+
+//     const form = event.target;
+//     const name = form.elements.name?.value;
+//     const number = form.elements.number?.value;
+
+//     if (!name || !number) {
+//       console.error("Both name and number are required!");
+//       return;
+//     }
+
+//     const newContact = { name, number };
+//     dispatch(addContact(newContact));
+//     form.reset();
+//   };
+
 const ContactsForm = () => {
   const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [number, setNumber] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const name = form.elements.name?.value.trim();
-    const phone = form.elements.phone?.value.trim();
-
-    if (!name || !phone) {
-      alert("Both name and phone are required!");
+    if (!name.trim() || !number.trim()) {
+      console.error("Both name and number are required!");
       return;
     }
 
-    const newContact = { name, phone };
-    dispatch(addContact(newContact));
-    form.reset();
+    dispatch(addContact({ name, number }));
+    setName("");
+    setNumber("");
   };
+
   return (
-    <form className={s.form_container} onSubmit={handleSubmit}>
-      <input className={s.input} name="name" placeholder="Name" required />
-      <input className={s.input} name="phone" placeholder="Number" required />
-      <button className={s.btn} type="submit">
-        Add Contact
-      </button>
-    </form>
+    <div className={s.form_container}>
+      <form className={s.form_content} onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input
+            className={s.input}
+            name="name"
+            placeholder="Name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Number:
+          <input
+            className={s.input}
+            name="phone"
+            placeholder="Number"
+            type="tel"
+            value={number}
+            onChange={(e) => setNumber(e.target.value)}
+            required
+          />
+        </label>
+        <button className={s.btn} type="submit">
+          Add Contact
+        </button>
+      </form>
+    </div>
   );
 };
 
