@@ -1,15 +1,22 @@
 .navigation_link {
+  padding: 20px;
   font-size: 25px;
   font-weight: bold;
   color: rgb(77, 44, 3);
-  &&:hover {
-    color: rgb(81, 163, 136);
-    transition: transform 0.4s ease;
-    transform: scale(1) translateY(-10px);
-  }
+}
+
+.navigation_link:hover {
+  color: rgb(81, 163, 136);
+  transition: transform 0.4s ease;
+  transform: scale(1) translateY(-10px);
 }
 
 .navigation {
   display: flex;
   gap: 20px;
+}
+
+.active {
+  color: rgb(81, 163, 136);
+  text-decoration: underline;
 }
