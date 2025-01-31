@@ -41,9 +41,11 @@ const ContactsPage = () => {
 
   return (
     <div>
-      <h1 className={s.contacts_title}>Contacts</h1>
+      <h1 className={s.contacts_title}>Phonebook</h1>
       <ContactsForm />
+      <h2 className={s.contacts_title}>Find contacts by name</h2>
       <SearchBox />
+      <h2 className={s.contacts_title}>Contacts</h2>
       <ContactList />
     </div>
   );

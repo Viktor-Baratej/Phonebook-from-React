@@ -6,7 +6,7 @@
 
 .input_body {
   text-align: center;
-  background-color: rgb(186, 162, 123);
+  background-color: rgb(240, 204, 160);
   font-size: 20px;
   padding: 10px;
   border: none;
@@ -15,5 +15,5 @@
   font-weight: bold;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
